@@ -1,0 +1,23 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+---
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Login</title>
+	</head>
+    <body>
+        <ViewTransitions/>
+       <div class="container p-5 mx-auto">
+        <p>username</p>
+        <input type="text" placeholder="username" class="input input-bordered w-full max-w-xs" />
+        <p>password</p>
+        <input type="password" placeholder="password" class="input input-bordered w-full max-w-xs" />
+       </div>
+       
+       <a href="/"><button class="btn btn-neutral mx-5">login</button></a>
+    </body>
+</html>
