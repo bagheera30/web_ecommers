@@ -1,0 +1,19 @@
+---
+import ProductList from "../../components/ProductList/ProductList.astro";
+import Layouts from "../../layouts/Layouts.astro";
+
+const response = await fetch(import.meta.env.API_ENDPOINT);
+const product = await response.json();
+console.log(product);
+
+const productCards = product.map(product=>{
+    console.log(product.description)
+    return(<ProductList Title={product.title} img={product.image} detail={product.description}/>)
+})
+---
+<!-- <Layouts title="produk">
+    <div>
+        <h1>produk</h1>
+        {productCards}
+    </div>
+</Layouts> -->

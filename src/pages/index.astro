@@ -2,29 +2,24 @@
 
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon'
-import Foot from "../components/Foot.astro";
+import Foot from "../components/header/Foot.astro";
+import Layouts from '../layouts/Layouts.astro';
+const title="Home";
+
 ---
 
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>welcome in ecommers</title>
-	</head>
-	<body>
+<Layouts title={title}>
 		<div class="bg-gray-900 h-auto">
 			<!-- navbar -->
-			<div class="navbar bg-gray-900 bg-opacity-9">
+			<div class="navbar bg-gray-900 bg-opacity-9 fixed">
 				<div class="flex-1">
-				  <a class="btn btn-ghost normal-case text-3xl text-white ">MultiSellerSquare</a>
+				  <a href="/" class="btn btn-ghost normal-case text-3xl text-white ">MultiSellerSquare</a>
 				</div>
 				<div class="flex-none gap-2">
 					<div class="  flex justify-between">
-						<button class="btn rounded-3xl mx-2 w-32 h-10">Dasbor</button>
-						<button class="btn rounded-3xl mx-2 w-32 h-10">Dasbor</button>
+						<a href="/dasbord"><button class="btn rounded-3xl mx-2 w-32 h-10">Dasbord</button></a>
+						<a href="/Products"><button class="btn rounded-3xl mx-2 w-32 h-10">Products</button></a>
 						<button class="btn rounded-3xl mx-2 w-32 h-10">Contact Us</button>
 					  </div>
 					  
@@ -41,7 +36,7 @@ import Foot from "../components/Foot.astro";
 						  
 						</a>
 					  </li>
-					  <li><a href="">Register</a></li>
+					  <li><a href="/regiter">Register</a></li>
 					</ul>
 				  </div>
 				</div>
@@ -55,5 +50,4 @@ import Foot from "../components/Foot.astro";
 			</div>
 		</div>
 		<Foot/>
-	</body>
-</html>
+</Layouts>

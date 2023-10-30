@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+import Layouts from "../../layouts/Layouts.astro";
+const {title,img_url,detail}=Astro.props;
+
+---
+<Layouts>
+    <div class="card w-96 bg-base-100 shadow-xl">
+        <figure><Image
+             src={img_url} alt="Shoes" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">{title}</h2>
+          <p>{detail}</p>
+          <div class="card-actions justify-end">
+            <button class="btn btn-primary">detail</button>
+          </div>
+        </div>
+      </div>
+</Layouts>

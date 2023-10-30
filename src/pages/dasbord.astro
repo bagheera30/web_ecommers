@@ -1,0 +1,39 @@
+---
+import Layouts from "../layouts/Layouts.astro";
+import Nav from "../components/header/Nav.astro";
+import Foot from "../components/header/Foot.astro";
+---
+
+<Layouts title="Dasbord">
+  <div class="w-full">
+    <Nav/>
+  </div>
+  
+  <div class="flex first-letter:relative">
+    <!-- Add a div for the sticky navigation -->
+    <div class="w-full sticky top-0 bg-white z-10">
+      <Nav/>
+    </div>
+  
+    <div class="w-96 mx-auto my-auto">
+      <div class="carousel w-full">
+        <div id="slide1" class="carousel-item relative w-full">
+          <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" class="w-full h-auto" />
+          <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <a href="#slide4" class="btn btn-circle">❮</a> 
+            <a href="#slide2" class="btn btn-circle">❯</a>
+          </div>
+        </div> 
+      </div>
+    </div>
+  
+    <a href="/"><button class="btn btn-neutral">Neutral</button></a>
+    <h1>dasdas</h1>
+  </div>
+  
+  <div>
+    <Foot/>
+  </div>
+  
+      
+</Layouts>
