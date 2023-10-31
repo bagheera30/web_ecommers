@@ -2,37 +2,42 @@
 import Layouts from "../layouts/Layouts.astro";
 import Nav from "../components/header/Nav.astro";
 import Foot from "../components/header/Foot.astro";
+import { getApiResponse } from "../libs/api-libs";
+const product = await getApiResponse("products", "limit=10");
+import ProductList from "../components/ProductList/ProductList.astro";
 ---
 
 <Layouts title="Dasbord">
   <div class="w-full">
     <Nav />
   </div>
-  <div class="carousel w-full">
-    <div id="slide1" class="carousel-item relative w-full">
-      <img
-        src="https://daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
-        alt=""
-        class="w-full"
-      />
-      <div
-        class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-      >
-        <a href="#slide4" class="btn btn-circle"> ❮</a>
-        <a href="#slide2" class="btn btn-circle"> ❯</a>
+  <div class="px-32 py-32 justify-between">
+    <div class="carousel w-full h-96">
+      <div id="slide1" class="carousel-item relative w-full">
+        <img src="src/img/Untitled design (2).jpg" class="w-full h-96" />
+        <div
+          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
+        >
+          <a href="#slide4" class="btn btn-circle">❮</a>
+          <a href="#slide2" class="btn btn-circle">❯</a>
+        </div>
+      </div>
+      <div id="slide4" class="carousel-item relative w-full">
+        <img src="src/img/Untitled design (2).jpg" class="w-full h-96" />
+        <div
+          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
+        >
+          <a href="#slide3" class="btn btn-circle">❮</a>
+          <a href="#slide1" class="btn btn-circle">❯</a>
+        </div>
       </div>
     </div>
-    <div id="slide4" class="carousel-item relative w-full">
-      <img src="" class="w-full" />
-      <div
-        class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-      >
-        <a href="#slide3" class="btn btn-circle"> ❮</a>
-        <a href="#slide1" class="btn btn-circle"> ❯</a>
-      </div>
-    </div>
+  </div>
+
+  <div class="py-32">
+    <ProductList api={product} />
   </div>
   <div>
     <Foot />
   </div>
-</Layouts>; ---
+</Layouts>
