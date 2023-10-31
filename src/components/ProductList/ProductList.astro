@@ -1,19 +1,37 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import Layouts from "../../layouts/Layouts.astro";
-const {title,img_url,detail}=Astro.props;
-
+const { api } = Astro.props;
 ---
-<Layouts>
-    <div class="card w-96 bg-base-100 shadow-xl">
-        <figure><Image
-             src={img_url} alt="Shoes" /></figure>
-        <div class="card-body">
-          <h2 class="card-title">{title}</h2>
-          <p>{detail}</p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">detail</button>
+
+<Layouts title="produk">
+  <div
+    class="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4 bg-slate-900"
+  >
+    {
+      api.map((products) => {
+        return (
+          <div class="card  shadow-xl  w-auto h-fit bg-black">
+            <figure>
+              <Image
+                src={products.image}
+                alt={products.title}
+                width={350}
+                height={350}
+              />
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title font-bold">{products.title}</h2>
+              <p class="text-lg text-red-700">$ {products.price}</p>
+              <div class="card-actions justify-end">
+                <a href={`/${products.id}`}>
+                  <button class="btn btn-primary">detail</button>
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        );
+      })
+    }
+  </div>
 </Layouts>

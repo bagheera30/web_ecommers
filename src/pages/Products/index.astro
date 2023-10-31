@@ -1,19 +1,13 @@
 ---
 import ProductList from "../../components/ProductList/ProductList.astro";
 import Layouts from "../../layouts/Layouts.astro";
-
-const response = await fetch(import.meta.env.API_ENDPOINT);
-const product = await response.json();
-console.log(product);
-
-const productCards = product.map(product=>{
-    console.log(product.description)
-    return(<ProductList Title={product.title} img={product.image} detail={product.description}/>)
-})
+import { getApiResponse } from "../../libs/api-libs";
+const product = await getApiResponse("products", "limit=10");
 ---
-<!-- <Layouts title="produk">
-    <div>
-        <h1>produk</h1>
-        {productCards}
-    </div>
-</Layouts> -->
+
+<Layouts title="produk">
+  <div class="h-auto">
+    <h1>produk</h1>
+    <ProductList api={product} />
+  </div>
+</Layouts>
