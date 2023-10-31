@@ -1,7 +1,57 @@
 ---
 import Layouts from "../layouts/Layouts.astro";
+import Nav from "../components/header/Nav.astro";
+import { Image } from "astro:assets";
+import Foot from "../components/header/Foot.astro";
 ---
 
 <Layouts title="detail produk">
-  <div class="h-screen"></div>
+  <Nav />
+  <div class="h-auto flex justify bg-slate-900 pb-20">
+    <div class="h-screen">
+      <Image
+        src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+        alt="gambar produk"
+        width="280"
+        height="250"
+        class="rounded-[10px] border border-black my-14 ml-40"
+      />
+      <Image
+        src="https://upload.jaknot.com/2022/12/images/products/57d182/original/yybag-tas-ransel-laptop-oxford-simple-desain-with-usb-charging-port-ybk0016.jpg"
+        alt="gambar produk"
+        width="90"
+        height="100"
+        class="rounded-[10px] border border-black my-10 ml-40"
+      />
+    </div>
+    <div class="text-white font-['Roboto']">
+      <h1 class="font-bold text-3xl my-24 ml-20">
+        NIVEA Extra Whitening Body Lotion - 200ml - Night Nourish
+      </h1>
+      <h2 class="font-bold text-3xl my-14 ml-20">Rp. 46.000</h2>
+      <h2 class="font-bold text-3xl ml-20">Detail Produk</h2>
+      <div class="w-[188px] h-[0px] border-2 border-red-700 ml-20"></div>
+      <p class="w-[651px]
+        h-[218px]
+        text-[22px] ml-20 mt-10">
+        NIVEA Body Lotion Extra White Instant Glow <br />200ml<br /><br />Dengan
+        pemakaian teratur, kombinasi formula yg dapat mencerahkan dan menjaga
+        kulitmu tetap cerah dari efek negatif sinar matahari. Sehingga dapat
+        merawat dari 10 tanda kulit kusam dan rusak. Sekaligus melembabkan dan
+        menghaluskan
+      </p>
+      <div class="w-[668px] h-[0px] border-2 border-red-700 mt-5 ml-20"></div>
+      <div class="flex mt-10 ml-20">
+        <h1 class="text-2xl font-bold">Jumlah</h1>
+        <h2 class="text-2xl font-bold ml-10">+</h2>
+        <h2 class="text-2xl font-bold ml-10">1</h2>
+        <h2 class="text-3xl font-bold ml-10">-</h2>
+      </div>
+      <div class="flex mt-10 ml-20">
+        <h1 class="text-2xl font-bold">Masukan Keranjang</h1>
+        <h1 class="text-2xl font-bold ml-56">Hubungi Penjual</h1>
+      </div>
+    </div>
+  </div>
+  <Foot />
 </Layouts>

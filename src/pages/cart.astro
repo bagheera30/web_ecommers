@@ -1,0 +1,36 @@
+---
+import Layouts from "../layouts/Layouts.astro";
+import Nav from "../components/header/Nav.astro";
+import { Image } from "astro:assets";
+---
+
+<Layouts title="Keranjang">
+  <Nav />
+  <div class="h-screen pt-10 bg-slate-900">
+    <div class="w-[1000px] h-[521px] bg-zinc-300 ml-52">
+      <h1 class="pt-10 pl-20 text-3xl font-bold">Keranjang</h1>
+      <div
+        class="w-[705px] h-[227px] bg-zinc-600 rounded-[5px] border border-slate-400 flex mt-10"
+      >
+        <Image
+          src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+          alt="gambar produk"
+          width="215"
+          height="93"
+          class="w-28 h-36 rounded-[10px] border border-black mt-7 ml-7"
+        />
+        <div>
+          <h1 class="mt-7 ml-10 text-white text-lg">
+            Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops
+          </h1>
+          <h1 class="mt-10 ml-10 text-white text-lg">$ 109.95</h1>
+          <button class="btn mt-5 ml-8">pilih promo</button>
+        </div>
+        <div class="flex justify-between mr-5 mt-44 text-white">
+          Jumlah
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layouts>
