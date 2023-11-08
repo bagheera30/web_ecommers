@@ -8,10 +8,8 @@ import ProductList from "../components/ProductList/ProductList.astro";
 ---
 
 <Layouts title="Dasbord">
-  <div class="w-full">
-    <Nav />
-  </div>
-  <div class="px-32 py-32 justify-between bg-slate-900">
+  <Nav />
+  <div class="px-32 py-32 justify-between bg-[#E5E5E5]">
     <div class="carousel w-full h-96">
       <div id="slide1" class="carousel-item relative w-full">
         <img src="src/img/Untitled design (2).jpg" class="w-full h-96" />
@@ -34,7 +32,7 @@ import ProductList from "../components/ProductList/ProductList.astro";
     </div>
   </div>
 
-  <div class="py-32">
+  <div class="">
     <ProductList api={product} />
   </div>
   <div>
