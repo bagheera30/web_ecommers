@@ -11,13 +11,13 @@ const { api } = Astro.props;
     {
       api.map((products) => {
         return (
-          <div class="card  shadow-xl  w-auto h-fit bg-black">
+          <div class="card  shadow-xl  w-auto h-96 bg-black">
             <figure>
               <Image
                 src={products.image}
                 alt={products.title}
-                width={350}
-                height={350}
+                width={190}
+                height={199}
               />
             </figure>
             <div class="card-body">
