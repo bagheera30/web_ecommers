@@ -4,54 +4,13 @@ import Layouts from "../../layouts/Layouts.astro";
 import { getApiResponse } from "../../libs/api-libs";
 import Foot from "../../components/header/Foot.astro";
 const product = await getApiResponse("products", "limit=10");
-<<<<<<< HEAD
+
 import { Icon } from "astro-icon";
----
-
-<Layouts title="produk">
-  <div class="navbar bg-gray-900 bg-opacity-9">
-    <div class="flex-1">
-      <a href="/" class="btn btn-ghost normal-case text-3xl text-white"
-        >MultiSellerSquare</a
-      >
-    </div>
-    <div class="flex-none gap-2">
-      <div class="flex justify-between">
-        <a href="/dasbord"
-          ><button class="btn rounded-3xl mx-2 w-32 h-10">Dasbord</button></a
-        >
-        <a href="/Products"
-          ><button class="btn rounded-3xl mx-2 w-32 h-10">Products</button></a
-        >
-        <button class="btn rounded-3xl mx-2 w-32 h-10">Contact Us</button>
-      </div>
-
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-          <div class="w-24 rounded-full">
-            <Icon name="mdi:account-outline" class="text-[#815A2C]" />
-          </div>
-        </label>
-        <ul
-          tabindex="0"
-          class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-        >
-          <li>
-            <a class="justify-between" href="/login"> login</a>
-          </li>
-          <li><a href="/regiter">Register</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <ProductList api={product} />
-=======
-import Icon from "astro-icon";
 ---
 
 <Layouts title="Produk">
   <div class="h-auto">
-    <div class="navbar bg-gray-900 bg-opacity-9">
+    <div class="navbar bg-[#5ED2B7] bg-opacity-9">
       <div class="flex-1">
         <a href="/" class="btn btn-ghost normal-case text-3xl text-white"
           >MultiSellerSquare</a
@@ -86,8 +45,9 @@ import Icon from "astro-icon";
         </div>
       </div>
     </div>
-    <ProductList api={product} />
+    <div class="py-12">
+      <ProductList api={product} />
+    </div>
   </div>
   <Foot />
->>>>>>> refs/remotes/dev/master
 </Layouts>
