@@ -11,7 +11,10 @@ const { api } = Astro.props;
     {
       api.map((products) => {
         return (
-          <div class="card  shadow-xl  w-auto h-fit bg-black">
+          <div
+            class="card  shadow-xl  w-auto h-96
+         bg-black"
+          >
             <figure>
               <Image
                 src={products.image}
@@ -21,7 +24,7 @@ const { api } = Astro.props;
               />
             </figure>
             <div class="card-body">
-              <h2 class="card-title font-bold">{products.title}</h2>
+              <h2 class="card-title font-bold text-white">{products.title}</h2>
               <p class="text-lg text-red-700">$ {products.price}</p>
               <div class="card-actions justify-end">
                 <a href={`/produk`}>
