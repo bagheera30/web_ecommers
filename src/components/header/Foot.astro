@@ -3,13 +3,13 @@ import { Icon } from "astro-icon";
 import { Link } from "astro-link";
 ---
 
-<footer class="footer p-10 bg-neutral text-neutral-content">
+<footer class="footer p-10 bg-[#5ED2B7] text-neutral-content">
   <aside>
-    <Icon name="mdi:bus" class="w-20" />
-    <p>Team Primajasa</p>
+    <Icon name="mdi:bus" class="w-20 text-stone-700" />
+    <p class="text-stone-700">Team Primajasa</p>
   </aside>
-  <nav class="gap-4 md:place-self-center md:justify-self-end">
-    <header class="footer-title">Social Media</header>
+  <nav class="gap-4 md:place-self-center md:justify-self-end text-stone-700">
+    <header class="footer-title font-bold">Social Media</header>
     <div class="grid grid-flow-col gap-4">
       <Link href="https://twitter.com/home">
         <Icon name="icomoon-free:twitter" class="w-8" />
@@ -22,5 +22,4 @@ import { Link } from "astro-link";
       </Link>
     </div>
   </nav>
-
 </footer>

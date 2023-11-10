@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users{
+  userId String @id @db.Uuid @default(dbgenerated("gen_random_Uuid()"))
+  name String
+  username String
+  password String
+  role Role @default(User)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updateAt DateTime @default(now()) @db.Timestamp(0)
+  carts cart[]
+}
+model Products{
+  id String @id @db.Uuid @default(dbgenerated("gen_random_Uuid()"))
+  name String
+  deskripsi String
+  image String
+  price Int
+  quantity Int
+  products CartItem[]
+}
+model cart{
+  id String @id @db.Uuid @default(dbgenerated("gen_random_Uuid()"))
+  userId String @db.Uuid
+  user Users @relation(fields: [userId], references: [userId])
+  date DateTime
+  products CartItem[]
+}
+model CartItem {
+  id String @id @db.Uuid @default(dbgenerated("gen_random_Uuid()"))
+  productId String @db.Uuid
+  product Products @relation(fields: [productId], references: [id])
+  quantity Int
+  cartId String @db.Uuid
+  cart cart @relation(fields: [cartId], references: [id])
+}
+
+
+enum Role {
+  User
+  Admin
+}

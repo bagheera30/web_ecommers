@@ -4,12 +4,13 @@ import Layouts from "../../layouts/Layouts.astro";
 import { getApiResponse } from "../../libs/api-libs";
 import Foot from "../../components/header/Foot.astro";
 const product = await getApiResponse("products", "limit=10");
-import Icon from "astro-icon";
+
+import { Icon } from "astro-icon";
 ---
 
 <Layouts title="Produk">
   <div class="h-auto">
-    <div class="navbar bg-gray-900 bg-opacity-9">
+    <div class="navbar bg-[#5ED2B7] bg-opacity-9">
       <div class="flex-1">
         <a href="/" class="btn btn-ghost normal-case text-3xl text-white"
           >MultiSellerSquare</a
@@ -44,7 +45,9 @@ import Icon from "astro-icon";
         </div>
       </div>
     </div>
-    <ProductList api={product} />
+    <div class="py-12">
+      <ProductList api={product} />
+    </div>
   </div>
   <Foot />
 </Layouts>
