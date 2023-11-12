@@ -4,29 +4,33 @@ import Nav from "../components/header/Nav.astro";
 import Foot from "../components/header/Foot.astro";
 import { getApiResponse } from "../libs/api-libs";
 const product = await getApiResponse("products", "limit=10");
+
 import ProductList from "../components/ProductList/ProductList.astro";
 ---
 
 <Layouts title="Dasbord">
   <Nav />
+
   <div class="px-32 py-32 justify-between bg-[#E5E5E5]">
-    <div class="carousel w-full h-96">
-      <div id="slide1" class="carousel-item relative w-full">
-        <img src="src/img/Untitled design (2).jpg" class="w-full h-96" />
-        <div
-          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-        >
-          <a href="#slide4" class="btn btn-circle">❮</a>
-          <a href="#slide2" class="btn btn-circle">❯</a>
+    <div class="bg-[#E5E5E5]">
+      <div class="carousel w-full h-96 bg-[#E5E5E5]">
+        <div id="slide1" class="carousel-item relative w-full">
+          <img src="src/img/Untitled design (2).jpg" class="w-full h-96" />
+          <div
+            class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
+          >
+            <a href="#slide4" class="btn btn-circle">❮</a>
+            <a href="#slide2" class="btn btn-circle">❯</a>
+          </div>
         </div>
-      </div>
-      <div id="slide4" class="carousel-item relative w-full">
-        <img src="src/img/Untitled design (2).jpg" class="w-full h-96" />
-        <div
-          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-        >
-          <a href="#slide3" class="btn btn-circle">❮</a>
-          <a href="#slide1" class="btn btn-circle">❯</a>
+        <div id="slide4" class="carousel-item relative w-full">
+          <img src="src/img/Untitled design (2).jpg" class="w-full h-96" />
+          <div
+            class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
+          >
+            <a href="#slide3" class="btn btn-circle">❮</a>
+            <a href="#slide1" class="btn btn-circle">❯</a>
+          </div>
         </div>
       </div>
     </div>
@@ -35,6 +39,7 @@ import ProductList from "../components/ProductList/ProductList.astro";
   <div class="">
     <ProductList api={product} />
   </div>
-
-  <Foot />
+  <div>
+    <Foot />
+  </div>
 </Layouts>
