@@ -1,8 +1,11 @@
 ---
 import Layouts from "../layouts/Layouts.astro";
+import Nav from "../components/header/Nav.astro";
+import Foot from "../components/header/Foot.astro";
 ---
 
 <Layouts title="Edit profile">
+  <Nav />
   <div class="h-full">
     <div class="border-b-2 block md:flex">
       <div class="w-full md:w-2/5 p-4 sm:p-6 lg:p-8 bg-white shadow-md">
@@ -96,4 +99,5 @@ import Layouts from "../layouts/Layouts.astro";
       </div>
     </div>
   </div>
+  <Foot />
 </Layouts>
