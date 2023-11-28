@@ -1,0 +1,20 @@
+---
+import { Image } from "astro:assets";
+const {api}=Astro.props;
+---
+
+<div class="flex mx-20">
+    {api.images.map((image, i) => {
+        return (
+            <div key={i}>
+                <Image
+                    src={image}
+                    alt={api.title}
+                    width="100"
+                    height="110"
+                    class="rounded-[10px] border border-black  ml-5"
+                />
+            </div>
+        );
+    })}
+</div>
