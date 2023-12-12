@@ -19,6 +19,7 @@ const findProductById = async (id: string) => {
 };
 
 const insertProduct = async (productData: any) => {
+
   const product = await prisma.product.create({
     data: {
       name: productData.name,
@@ -37,7 +38,7 @@ const deleteProduct = async (id: string) => {
       id,
     },
   });
-  // DELETE FROM products WHERE id = {productId}
+
 };
 
 const editProduct = async (id: string, productData: any) => {
