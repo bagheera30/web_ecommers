@@ -10,13 +10,14 @@ datasource db {
 model Users {
   userId    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name      String
-  username  String
+  username  String @unique
   password  String
   role      Role     @default(User)
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updateAt  DateTime @default(now()) @db.Timestamp(0)
-  nomerWA    BigInt
+  nomerWA    BigInt?
   carts     cart[]
+  token     String
 }
 
 model Products {

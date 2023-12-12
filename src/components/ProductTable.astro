@@ -1,0 +1,46 @@
+---
+// import { nagite } from "nagireact-dom";
+import { deleteApiResponseById } from "../libs/api-libs";
+
+const { api } = Astro.props;
+// const removeData = async (id) => {
+//   await deleteApiResponseById("product", id);
+//   navigate()
+// };
+---
+
+<div class="overflow-x-auto">
+  <table class="table table-zebra">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>deskripsi</th>
+        <th>price</th>
+        <th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 1 -->
+      {
+        api.data?.map((product) => {
+          return (
+            <tr>
+              <td>{product.name}</td>
+              <td>{product.deskripsi}</td>
+              <td>$ {product.price}</td>
+              <td>
+                <a href={`/Products/update/${product.id}`}>
+                  <button class="btn btn-primary">update</button>
+                </a>
+                <a href={`/Products/${product.id}`}>
+                  <button class="btn btn-primary">delete</button>
+                </a>
+              </td>
+            </tr>
+          );
+        })
+      }
+    </tbody>
+  </table>
+</div>

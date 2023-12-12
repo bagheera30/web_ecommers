@@ -1,6 +1,6 @@
 export { }
 const db = require("../libs/db");
-import bcrypt from 'bcrypt';
+
 
 const prisma = db.getInstance();
 
@@ -22,6 +22,7 @@ const insertUsers = async (usersData: any) => {
             username: usersData.username,
             password: usersData.password,
             nomerWA: usersData.nomerWA,
+            token: usersData.token,
         },
     });
     return users;
