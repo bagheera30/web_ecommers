@@ -10,7 +10,11 @@ yarn-error.log
 .env
 
 # Supabase
+<<<<<<< HEAD
+.supabase/
+=======
 supabase/
+>>>>>>> server
 
 # Express.js
 logs/

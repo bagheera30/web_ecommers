@@ -1,11 +1,24 @@
+<<<<<<< HEAD
+const { findProducts } = require("./product.repository");
+=======
 import { constants } from "buffer";
 
 const { findProducts, findProductById, insertProduct, editProduct, deleteProduct } = require("./product.repository");
+>>>>>>> server
 const GetAllData = async () => {
   const data = await findProducts();
   return data;
 };
 
+<<<<<<< HEAD
+// const GetById = async (id: string) => {
+//   const data = await FindProductbyid(id);
+//   return data;
+// };
+module.exports = {
+  GetAllData,
+  // GetById,
+=======
 const GetById = async (id: string) => {
   const data = await findProductById(id);
   return data;
@@ -32,4 +45,5 @@ module.exports = {
   createproduct,
   editProductById,
   deleteProductById,
+>>>>>>> server
 };
