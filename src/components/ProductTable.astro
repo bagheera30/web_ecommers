@@ -1,12 +1,18 @@
 ---
 // import { nagite } from "nagireact-dom";
-import { deleteApiResponseById } from "../libs/api-libs";
+import { useEffect, useState } from "react";
+import { deleteApiResponseById, getApiResponse } from "../libs/api-libs";
+import { axiosIntense } from "../libs/axios";
 
 const { api } = Astro.props;
-// const removeData = async (id) => {
-//   await deleteApiResponseById("product", id);
-//   navigate()
-// };
+const [products, setproduct] = useState([]);
+const product = async () => {
+  const response = await getApiResponse("products", "limit=10");
+  setproduct(response.data);
+};
+useEffect(() => {
+  product();
+}, []);
 ---
 
 <div class="overflow-x-auto">
@@ -23,7 +29,7 @@ const { api } = Astro.props;
     <tbody>
       <!-- row 1 -->
       {
-        api.data?.map((product) => {
+        product.map((product) => {
           return (
             <tr>
               <td>{product.name}</td>
