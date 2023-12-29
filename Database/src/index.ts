@@ -1,15 +1,6 @@
 import express, { Request, Response } from "express";
 const dotenv = require("dotenv");
-<<<<<<< HEAD
-const app = express();
-dotenv.config();
-app.use(express.json());
-const port = process.env.PORT;
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World");
-});
-const productController = require("./product/product.controller");
-=======
+
 const cors = require("cors");
 const app = express();
 dotenv.config();
@@ -22,7 +13,7 @@ app.get("/", (req: Request, res: Response) => {
 const productController = require("./product/product.controller");
 const usersController = require("./users/users.controller");
 app.use("/users", usersController);
->>>>>>> server
+
 app.use("/products", productController);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

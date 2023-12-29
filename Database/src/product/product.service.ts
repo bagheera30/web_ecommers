@@ -1,38 +1,42 @@
-<<<<<<< HEAD
-const { findProducts } = require("./product.repository");
-=======
-import { constants } from "buffer";
 
-const { findProducts, findProductById, insertProduct, editProduct, deleteProduct } = require("./product.repository");
->>>>>>> server
-const GetAllData = async () => {
-  const data = await findProducts();
-  return data;
+const {
+  findProducts,
+  findProductById,
+  insertProduct,
+  deleteProduct,
+  editProduct,
+} = require("./product.repository");
+
+const getAllProducts = async () => {
+  const products = await findProducts();
+
+  return products;
 };
 
-<<<<<<< HEAD
-// const GetById = async (id: string) => {
-//   const data = await FindProductbyid(id);
-//   return data;
-// };
-module.exports = {
-  GetAllData,
-  // GetById,
-=======
-const GetById = async (id: string) => {
-  const data = await findProductById(id);
-  return data;
-};
-const createproduct = async (productData: any) => {
-  const product = await insertProduct(productData);
+const getProductById = async (id: string) => {
+  const product = await findProductById(id);
+
+  if (!product) {
+    throw Error("Product not found");
+  }
+
   return product;
-}
+};
+
+const createProduct = async (newProductData: any) => {
+  const product = await insertProduct(newProductData);
+
+  return product;
+};
+
 const deleteProductById = async (id: string) => {
-  await GetById(id)
+  await getProductById(id);
+
   await deleteProduct(id);
-}
+};
+
 const editProductById = async (id: string, productData: any) => {
-  await GetById(id);
+  await getProductById(id);
 
   const product = await editProduct(id, productData)
 
@@ -40,10 +44,9 @@ const editProductById = async (id: string, productData: any) => {
 };
 
 module.exports = {
-  GetAllData,
-  GetById,
-  createproduct,
-  editProductById,
+  getAllProducts,
+  getProductById,
+  createProduct,
   deleteProductById,
->>>>>>> server
-};
+  editProductById,
+};  

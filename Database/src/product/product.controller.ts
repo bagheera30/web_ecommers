@@ -1,28 +1,59 @@
 
 import express, { Request, Response } from "express";
-const { GetAllData, GetById, createproduct, editProductById, deleteProductById } = require("./product.service");
+const {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  deleteProductById,
+  editProductById,
+} = require("./product.service");
+
 const router = express.Router();
 
-router.get("/", async (req: Request, res: Response) => {
-  const products = await GetAllData();
+router.get("/", async (req, res) => {
+  const products = await getAllProducts();
+
   res.send(products);
 });
 
-router.get("/:id", async (req: Request, res: Response) => {
-  const product = await GetById(req.params.id);
-  res.send(product);
-});
-
-router.post("/", async (req: Request, res: Response) => {
+router.get("/:id", async (req, res) => {
   try {
-    const newdata = req.body;
+    const productId = req.params.id;
+    const product = await getProductById(productId);
 
-    const product = await createproduct(newdata);
     res.send(product);
-  } catch (error: any) {
-    throw new Error(error.message);
+  } catch (err) {
+    res.status(400).send((err as Error).message);
   }
 });
+
+router.post("/", async (req, res) => {
+  try {
+    const newProductData = req.body;
+
+    const product = await createProduct(newProductData);
+
+    res.send({
+      data: product,
+      message: "create product success",
+    });
+  } catch (error) {
+    res.status(400).send((error as Error).message);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const productId = req.params.id; // string
+
+    await deleteProductById(productId);
+
+    res.send("product deleted");
+  } catch (error: Error | any) {
+    res.status(400).send(error.message);
+  }
+});
+
 router.put("/:id", async (req, res) => {
   const productId = req.params.id;
   const productData = req.body;
@@ -45,30 +76,21 @@ router.put("/:id", async (req, res) => {
     message: "edit product success",
   });
 });
-router.delete("/:id", async (req, res) => {
-  try {
-    const productId = req.params.id; // string
 
-    await deleteProductById(productId);
-
-    res.send("product deleted");
-  } catch (error: Error | any) {
-    res.status(400).send(error.message);
-  }
-});
 router.patch("/:id", async (req, res) => {
   try {
     const productId = req.params.id;
     const productData = req.body;
 
-    const product = await editProductById(parseInt(productId), productData);
+    const product = await editProductById(productId, productData);
 
     res.send({
       data: product,
       message: "edit product success",
     });
-  } catch (err: any) {
-    res.status(400).send(err.message);
+  } catch (err) {
+    res.status(400).send((err as Error).message);
   }
 });
+
 module.exports = router;

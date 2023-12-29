@@ -1,25 +1,14 @@
 ---
 // import { nagite } from "nagireact-dom";
 
-import { useEffect, useState } from "react";
 import { deleteApiResponseById, getApiResponse } from "../libs/api-libs";
 import { axiosIntense } from "../libs/axios";
 
 const { api } = Astro.props;
-const [products, setproduct] = useState([]);
-const product = async () => {
-  const response = await getApiResponse("products", "limit=10");
-  setproduct(response.data);
-};
-useEffect(() => {
-  product();
-}, []);
-
 ---
 
 <div class="overflow-x-auto">
   <table class="table table-zebra">
-    <!-- head -->
     <thead>
       <tr>
         <th>Name</th>
@@ -29,11 +18,8 @@ useEffect(() => {
       </tr>
     </thead>
     <tbody>
-      <!-- row 1 -->
       {
-
-        product.map((product) => {
-
+        api.data.map((product) => {
           return (
             <tr>
               <td>{product.name}</td>
@@ -53,4 +39,4 @@ useEffect(() => {
       }
     </tbody>
   </table>
-</div>
+</div>; ---
