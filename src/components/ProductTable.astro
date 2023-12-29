@@ -1,10 +1,26 @@
 ---
 // import { nagite } from "nagireact-dom";
 
+<<<<<<< HEAD
+=======
+import { useEffect, useState } from "react";
+>>>>>>> master
 import { deleteApiResponseById, getApiResponse } from "../libs/api-libs";
 import { axiosIntense } from "../libs/axios";
 
 const { api } = Astro.props;
+<<<<<<< HEAD
+=======
+const [products, setproduct] = useState([]);
+const product = async () => {
+  const response = await getApiResponse("products", "limit=10");
+  setproduct(response.data);
+};
+useEffect(() => {
+  product();
+}, []);
+
+>>>>>>> master
 ---
 
 <div class="overflow-x-auto">
@@ -19,7 +35,13 @@ const { api } = Astro.props;
     </thead>
     <tbody>
       {
+<<<<<<< HEAD
         api.data.map((product) => {
+=======
+
+        product.map((product) => {
+
+>>>>>>> master
           return (
             <tr>
               <td>{product.name}</td>

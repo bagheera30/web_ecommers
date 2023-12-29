@@ -1,0 +1,71 @@
+---
+import { useState } from "react";
+import Foot from "../../components/header/Foot.astro";
+import Nav from "../../components/header/Nav.astro";
+import Input from "../../components/input.astro";
+import Layouts from "../../layouts/Layouts.astro";
+import { axiosIntense } from "../../libs/axios";
+import { Navigate } from "react-router-dom";
+
+const [name, setName] = useState("");
+const [deskripsi, setdeskripsi] = useState("");
+const [price, setprice] = useState("");
+const [image, setimage] = useState("");
+const [quantity, setquantity] = useState("");
+
+const saveProduk = async (e) => {
+  e.preventDefault();
+  try {
+    await axiosIntense.post("${import.meta.env.PUBLIC_API_PRODUCT}/products", {
+      name,
+      deskripsi,
+      price,
+      image,
+      quantity,
+    });
+    <Navigate to="/admin" replace={true} />;
+  } catch (error) {}
+};
+---
+
+<Layouts title="add Products">
+  <Nav />
+  <div class="flex justify-center items-center h-screen bg-[#E5E5E5]">
+    <div class="w-96 p-6 bg-zinc-100 rounded-md shadow-lg">
+      <h1 class="text-black text-4xl font-bold">daftarkan product</h1>
+      <form onsubmit="{saveProduk}" '>
+        <div class="py-3">
+          <Input
+            placeholder="name"
+            type="text"
+            value={name}
+            onchange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div class="py-3">
+          <Input
+            class="textarea max-w-full"
+            value={deskripsi}
+            onchange={(e) => setdeskripsi(e.target.value)}
+            placeholder="deskripsi"
+          />
+        </div>
+      </form>
+      <div class="py-3">
+        <Input type="file" />
+      </div>
+      <div class="py-3">
+        <Input type="number" placeholder="price" />
+      </div>
+      <div class="py-3">
+        <Input type="number" placeholder="quantity" />
+      </div>
+      <div class="text-center">
+        <button type="submit" class="w-full btn btn-neutral bg-red-600"
+          >login</button
+        >
+      </div>
+    </div>
+  </div>
+</Layouts>
+<Foot />
