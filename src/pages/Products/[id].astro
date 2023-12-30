@@ -31,15 +31,15 @@ const quantity = product.data.quantity;
       <h2 class="font-bold text-3xl my-14 ml-20">Rp. {product.data.price}</h2>
       <h2 class="font-bold text-3xl ml-20">Detail Produk</h2>
       <div class="w-[188px] h-[0px] border-2 border-red-700 ml-20"></div>
-      <p class="w-[651px]
-        h-[118px]
+      <p class="w-[500px]
+        h-[228px]
         text-[22px] ml-20 mt-10">
         {product.data.deskripsi}
       </p>
 
       <Counter quantity={quantity} client:load />
       <div class="w-[668px] h-[0px] border-2 border-red-700 mt-5 ml-20"></div>
-      <div class="flex mt-10 ml-20">
+      <div class="flex mt-16 ml-20">
         <button class="btn bg-red-700"
           ><a class="text-2xl font-bold text-white">
             Masukan Keranjang

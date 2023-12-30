@@ -4,11 +4,14 @@ const db = require("../libs/db");
 
 const prisma = db.getInstance();
 
-
+const fiindAllUsers = async () => {
+    const users = await prisma.Users.findMany();
+    return users;
+}
 const findUsersByUsername = async (username: string) => {
     const user = await prisma.Users.findUnique({
         where: {
-            username,
+            username: username,
         },
     });
     return user;
@@ -45,5 +48,6 @@ const editUsers = async (username: string, usersData: any) => {
 module.exports = {
     findUsersByUsername,
     insertUsers,
-    editUsers
+    editUsers,
+    fiindAllUsers
 }

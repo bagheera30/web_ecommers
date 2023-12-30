@@ -1,10 +1,26 @@
 import express, { Request, Response } from "express";
-const { createUser, loginUser, editUsersByname } = require('./users.service')
+const { createUser, loginUser, editUsersByname, getAllUsers, getuserByusername } = require('./users.service')
 const router = express.Router();
 
-router.get('/:id', (req, res) => {
-
+router.get("/", async (req, res) => {
+    try {
+        const users = await getAllUsers();
+        res.json(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error fetching users' });
+    }
 });
+
+router.get('/:username', async (req: Request, res: Response) => {
+    try {
+        const { username } = req.params;
+        const users = await getuserByusername(username);
+        res.json(users);
+    } catch (error) {
+        res.status(400).send((error as Error).message);
+    }
+})
 
 router.post('/register', async (req: Request, res: Response) => {
     try {
@@ -49,3 +65,4 @@ router.put('/:username', async (req: Request, res: Response) => {
     });
 });
 module.exports = router
+

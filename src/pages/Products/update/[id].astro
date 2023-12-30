@@ -3,17 +3,19 @@ import Layouts from "../../../layouts/Layouts.astro";
 import { getApiResponse } from "../../../libs/api-libs";
 import Nav from "../../../components/header/Nav.astro";
 import { Image } from "astro:assets";
-import { getApiResponseById } from "../../../libs/api-libs";
+import { getApiResponseById, patchApiResponse } from "../../../libs/api-libs";
 import Foot from "../../../components/header/Foot.astro";
-import ProductForm from "../../../components/ProductForm.astro"; // Import the React component
+
+import FormProduct from "../../../components/form/FormProduct.tsx";
+
 const { id } = Astro.params;
 
-const product = await getApiResponseById("products", id);
+const getProduct = await getApiResponseById("products", id);
 
 export const prerender = false;
 ---
 
 <Layouts title="update data">
   <Nav />
-  <ProductForm id={product.data.id} />
+  <FormProduct product={getProduct.data} client:load />
 </Layouts>

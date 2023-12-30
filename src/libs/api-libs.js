@@ -22,7 +22,11 @@ export const postApiResponse = async (resource, data) => {
   const response = await axiosIntense.post(`${resource}`, data);
   return response;
 };
-export const putApiresponse = async (resource, data) => {
-  const response = axiosIntense.put(`${resource}`, data);
+export const patchApiResponse = async (resource, id, data) => {
+  const response = axiosIntense.patch(`${resource}/${id}`, data);
+  return response;
+};
+export const putApiresponse = async (resource, id, data) => {
+  const response = axiosIntense.put(`${resource}/${id}`, data);
   return response;
 };

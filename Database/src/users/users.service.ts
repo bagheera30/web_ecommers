@@ -3,9 +3,13 @@ import jwt from 'jsonwebtoken';
 const {
     findUsersByUsername,
     insertUsers,
-    editUsers
+    editUsers,
+    fiindAllUsers
 } = require('./users.repository')
-
+const getAllUsers = async () => {
+    const users = await fiindAllUsers();
+    return users;
+}
 const createUser = async (userData: any) => {
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     const user = await insertUsers({
@@ -27,16 +31,20 @@ const loginUser = async (username: string, password: string) => {
     return token;
 };
 const editUsersByname = async (username: string, userData: any) => {
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const user = await editUsers(username, {
-        ...userData,
-        password: hashedPassword,
-    });
+    await getuserByusername(username);
+    const user = await editUsers(username, userData);
     return user;
 }
-
+const getuserByusername = async (username: string) => {
+    const user = findUsersByUsername(username);
+    if (!user) {
+        throw new Error(`User ${username} not found`);
+    }
+    return user;
+}
 module.exports = {
     createUser,
     loginUser,
-    editUsersByname
+    editUsersByname,
+    getAllUsers
 }
