@@ -3,67 +3,19 @@ import Layouts from "../../../layouts/Layouts.astro";
 import { getApiResponse } from "../../../libs/api-libs";
 import Nav from "../../../components/header/Nav.astro";
 import { Image } from "astro:assets";
-import { getApiResponseById } from "../../../libs/api-libs";
+import { getApiResponseById, patchApiResponse } from "../../../libs/api-libs";
 import Foot from "../../../components/header/Foot.astro";
+
+import FormProduct from "../../../components/form/FormProduct.tsx";
+
 const { id } = Astro.params;
 
-export const prerender = false;
+const getProduct = await getApiResponseById("products", id);
 
-const product = await getApiResponseById("products", id);
+export const prerender = false;
 ---
 
 <Layouts title="update data">
   <Nav />
-  <div class="flex justify-center items-center h-screen bg-[#E5E5E5] pt-20">
-    <div class="w-96 p-6 bg-zinc-100 rounded-md shadow-lg">
-      <h1 class="text-black text-4xl font-bold">edit {product.data.name}</h1>
-      <div class="py-3">
-        <input
-          type="text"
-          placeholder="Nama"
-          class="input input-bordered w-full max-w-xs"
-          value={product.data.name}
-        />
-      </div>
-      <div class="py-3">
-        <input
-          type="text"
-          placeholder="deskripsi"
-          class="input input-bordered w-full max-w-xs"
-          value={product.data.deskripsi}
-        />
-      </div>
-      <div class="py-3">
-        <input
-          type="number"
-          placeholder="price"
-          class="input input-bordered w-full max-w-xs"
-          value={product.data.price}
-        />
-      </div>
-
-      <div class="py-3">
-        <input
-          type="number"
-          placeholder="quantiti"
-          class="input input-bordered w-full max-w-xs"
-          value={product.data.quantity}
-        />
-      </div>
-      <div class="py-3">
-        <input
-          type="text"
-          placeholder="image"
-          class="input input-bordered w-full max-w-xs"
-          value={product.data.image}
-        />
-      </div>
-
-      <div class="text-center">
-        <a href="/login"
-          ><button class="w-full btn btn-neutral bg-red-600">update</button></a
-        >
-      </div>
-    </div>
-  </div>
+  <FormProduct product={getProduct.data} client:load />
 </Layouts>

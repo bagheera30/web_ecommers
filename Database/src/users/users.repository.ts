@@ -4,11 +4,14 @@ const db = require("../libs/db");
 
 const prisma = db.getInstance();
 
-
-const findUsersByid = async (id: string) => {
+const fiindAllUsers = async () => {
+    const users = await prisma.Users.findMany();
+    return users;
+}
+const findUsersByUsername = async (username: string) => {
     const user = await prisma.Users.findUnique({
         where: {
-            userId: id,
+            username: username,
         },
     });
     return user;
@@ -30,7 +33,7 @@ const insertUsers = async (usersData: any) => {
 const editUsers = async (username: string, usersData: any) => {
     const users = await prisma.Users.update({
         where: {
-            username: username,
+            username,
         },
         data: {
             name: usersData.name,
@@ -40,9 +43,11 @@ const editUsers = async (username: string, usersData: any) => {
         },
     });
     return users;
+
 }
 module.exports = {
-    findUsersByid,
+    findUsersByUsername,
     insertUsers,
     editUsers,
+    fiindAllUsers
 }

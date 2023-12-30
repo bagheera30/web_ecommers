@@ -5,11 +5,12 @@ import Nav from "../../components/header/Nav.astro";
 import { Image } from "astro:assets";
 import { getApiResponseById } from "../../libs/api-libs";
 import Foot from "../../components/header/Foot.astro";
+import Counter from "../../components/counter.tsx";
+
 const { id } = Astro.params;
 
-export const prerender = false;
-
 const product = await getApiResponseById("products", id);
+const quantity = product.data.quantity;
 ---
 
 <Layouts title={product.data.name}>
@@ -30,19 +31,15 @@ const product = await getApiResponseById("products", id);
       <h2 class="font-bold text-3xl my-14 ml-20">Rp. {product.data.price}</h2>
       <h2 class="font-bold text-3xl ml-20">Detail Produk</h2>
       <div class="w-[188px] h-[0px] border-2 border-red-700 ml-20"></div>
-      <p class="w-[651px]
-        h-[218px]
+      <p class="w-[500px]
+        h-[228px]
         text-[22px] ml-20 mt-10">
         {product.data.deskripsi}
       </p>
+
+      <Counter quantity={quantity} client:load />
       <div class="w-[668px] h-[0px] border-2 border-red-700 mt-5 ml-20"></div>
-      <div class="flex mt-10 ml-20">
-        <h1 class="text-2xl font-bold">Jumlah</h1>
-        <h2 class="text-2xl font-bold ml-10">+</h2>
-        <h2 class="text-2xl font-bold ml-10">1</h2>
-        <h2 class="text-3xl font-bold ml-10">-</h2>
-      </div>
-      <div class="flex mt-10 ml-20">
+      <div class="flex mt-16 ml-20">
         <button class="btn bg-red-700"
           ><a class="text-2xl font-bold text-white">
             Masukan Keranjang
@@ -61,4 +58,4 @@ const product = await getApiResponseById("products", id);
     <Foot />
   </div>
 </Layouts>
- ../../components/Detailimage.tsx
+ ../../components/counter.tsx

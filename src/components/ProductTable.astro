@@ -1,56 +1,51 @@
 ---
-// import { nagite } from "nagireact-dom";
-
-import { useEffect, useState } from "react";
-import { deleteApiResponseById, getApiResponse } from "../libs/api-libs";
-import { axiosIntense } from "../libs/axios";
-
+import { Image } from "astro:assets";
+import Layouts from "../layouts/Layouts.astro";
 const { api } = Astro.props;
-const [products, setproduct] = useState([]);
-const product = async () => {
-  const response = await getApiResponse("products", "limit=10");
-  setproduct(response.data);
+const rupiah = (number) => {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  }).format(number);
 };
-useEffect(() => {
-  product();
-}, []);
-
 ---
 
-<div class="overflow-x-auto">
-  <table class="table table-zebra">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>deskripsi</th>
-        <th>price</th>
-        <th>action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- row 1 -->
-      {
-
-        product.map((product) => {
-
-          return (
-            <tr>
-              <td>{product.name}</td>
-              <td>{product.deskripsi}</td>
-              <td>$ {product.price}</td>
-              <td>
+<Layouts title="produk">
+  <div
+    class="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4 bg-[#E5E5E5] pb-10 pt-10"
+  >
+    {
+      api.data.map((product) => {
+        return (
+          <div class="card  shadow-xl py-10  w-auto h-[565px] bg-[#496b63]">
+            <figure>
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={20}
+                height={20}
+                class=" rounded"
+                width={80}
+                height={80}
+                class="h-56 w-52"
+              />
+            </figure>
+            <div class="card-body">
+              <h1 class="card-title text-white">{product.name}</h1>
+              <h2 class="text-white mt-5"> {rupiah(product.price)}</h2>
+              <div class="w-[50px]  border-[1px] border-white" />
+              <div class="card-actions justify-end mt-28">
                 <a href={`/Products/update/${product.id}`}>
                   <button class="btn btn-primary">update</button>
                 </a>
                 <a href={`/Products/${product.id}`}>
                   <button class="btn btn-primary">delete</button>
                 </a>
-              </td>
-            </tr>
-          );
-        })
-      }
-    </tbody>
-  </table>
-</div>
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</Layouts>
