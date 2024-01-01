@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
 const Counter = (quantity) => {
-  const [Counter, setCounter] = useState(1);
+  const [Counter, setCounter] = useState(0);
   return (
     <div className="flex mt-10 ml-20">
       <h1 className="text-2xl font-bold">jumlah</h1>
       <button
         onClick={() => {
-          if (quantity.quantity !== null && quantity.quantity < Counter + 1) {
+          if (quantity.quantity !== null && quantity.quantity < Counter) {
+            alert("Jumlah stok tidak ada");
             return;
           }
           setCounter((prev) => prev + 1);

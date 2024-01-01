@@ -4,9 +4,18 @@ import axios from "axios";
 
 function FormProduct(getproduct) {
   const [product, setProduct] = useState(getproduct.product);
+  const [image, setImage] = useState(product.image);
+  console.log("🚀 ~ file: FormProduct.tsx:7 ~ FormProduct ~ product:", product);
 
   const handleChange = (event) => {
-    setProduct({ ...product, [event.target.name]: event.target.value });
+    const upload = event.target.files[0];
+    let fileData = {
+      file: upload,
+      image: URL.createObjectURL(upload),
+      [event.target.name]: event.target.value,
+    };
+
+    setProduct({ ...product, ...fileData });
   };
 
   const handleSubmit = async (event) => {
@@ -17,19 +26,17 @@ function FormProduct(getproduct) {
         product
       );
       // Handle successful response, e.g., display a success message or redirect
-      console.log("Success!");
+
       window.location.href = "/admin";
     } catch (error) {
+      throw error;
       console.log(" ~ file: FormProduct.tsx:19 ~ handleSubmit ~ error:", error);
       // Handle error, e.g., display an error message
     } // Send updated product data
-    console.log(
-      "🚀 ~ file: FormProduct.tsx:26 ~ handleSubmit ~ product.id:",
-      product.id
-    );
   };
 
   return (
+    // ALFIAN KERJAKAN DISINI
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Product Name:</label>
@@ -63,6 +70,15 @@ function FormProduct(getproduct) {
           id="price"
           name="price"
           value={product.price}
+          onChange={handleChange}
+        />
+        <img src={image} alt="tempat image dengan nama {product.name}" />
+        <label htmlFor="Image">Image:</label>
+        <input
+          type="file"
+          id="Image"
+          name="Image"
+          value={product.image}
           onChange={handleChange}
         />
       </div>

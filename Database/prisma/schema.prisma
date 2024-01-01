@@ -15,9 +15,9 @@ model Users {
   role      Role     @default(User)
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updateAt  DateTime @default(now()) @db.Timestamp(0)
-  nomerWA    BigInt?
+  nomerWA    String?
   carts     cart[]
-  token     String
+  token     String?
 }
 
 model Products {

@@ -1,6 +1,7 @@
 ---
 import Layouts from "../layouts/Layouts.astro";
 import Foot from "../components/header/Foot.astro";
+import FormRegister from "../components/form/FormRegister.tsx";
 const title = "register";
 ---
 
@@ -15,71 +16,7 @@ const title = "register";
     </div>
   </div>
   <div class="flex justify-center items-center h-auto bg-[#E5E5E5] pt-20">
-    <div class="w-96 p-6 bg-zinc-100 rounded-md shadow-lg">
-      <h1 class="text-black text-4xl font-bold">Register</h1>
-      <div class="py-3">
-        <input
-          type="text"
-          placeholder="Nama"
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
-      <div class="py-3">
-        <input
-          type="text"
-          placeholder="NO. Hanphone"
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
-      <div class="py-3">
-        <input
-          type="text"
-          placeholder="Nama"
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
-      <div class="py-3">
-        <input
-          type="text"
-          placeholder="No. Handphone"
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
-      <div class="py-3">
-        <input
-          type="email"
-          placeholder="Email"
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
-      <div class="py-3">
-        <input
-          type="password"
-          placeholder="Password"
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
-      <div class="text-center">
-        <a href="/login"
-          ><button class="w-full btn btn-neutral bg-red-600">register</button
-          ></a
-        >
-      </div>
-      <div class="w-96 h-5 justify-center items-center gap-9 inline-flex">
-        <div class="w-20 h-px border border-black border-opacity-50"></div>
-        <div
-          class="text-black text-opacity-50 text-lg font-normal font-['Roboto']"
-        >
-          sudah punya akun?
-        </div>
-        <div class="w-20 h-px border border-black border-opacity-50"></div>
-      </div>
-      <div class="text-center py-5">
-        <a href="/login"
-          ><button class="w-full btn btn-neutral bg-red-600">Login</button></a
-        >
-      </div>
-    </div>
+    <FormRegister client:load />
   </div>
 </Layouts>
 <Foot />

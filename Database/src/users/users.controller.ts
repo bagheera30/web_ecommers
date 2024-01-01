@@ -2,6 +2,9 @@ import express, { Request, Response } from "express";
 const { createUser, loginUser, editUsersByname, getAllUsers, getuserByusername } = require('./users.service')
 const router = express.Router();
 
+
+
+
 router.get("/", async (req, res) => {
     try {
         const users = await getAllUsers();
@@ -26,8 +29,9 @@ router.post('/register', async (req: Request, res: Response) => {
     try {
         const newdata = req.body;
         const user = await createUser(newdata);
+        const userString = JSON.parse(JSON.stringify(user));
         res.send({
-            data: user,
+            data: userString,
             message: "register success",
         });
     } catch (error) {
@@ -37,8 +41,13 @@ router.post('/register', async (req: Request, res: Response) => {
 router.post('/login', async (req: Request, res: Response) => {
     try {
         const { username, password } = req.body;
-        const user = await loginUser(username, password);
-        res.status(200).json({ user });
+
+        const { token, role } = await loginUser(username, password); // Retrieve token from loginUser function
+
+        // Store token in session
+
+
+        res.status(200).json({ user: { role } });
     } catch (error) {
         res.status(400).send((error as Error).message);
     }

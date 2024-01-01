@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Layouts from "../layouts/Layouts.astro";
+import BtnDelete from "./btn/BtnDelete";
 const { api } = Astro.props;
 const rupiah = (number) => {
   return new Intl.NumberFormat("id-ID", {
@@ -38,9 +39,7 @@ const rupiah = (number) => {
                 <a href={`/Products/update/${product.id}`}>
                   <button class="btn btn-primary">update</button>
                 </a>
-                <a href={`/Products/${product.id}`}>
-                  <button class="btn btn-primary">delete</button>
-                </a>
+                <BtnDelete client:idle id={product.id} />
               </div>
             </div>
           </div>
@@ -49,3 +48,19 @@ const rupiah = (number) => {
     }
   </div>
 </Layouts>
+<script>
+  import { useEffect } from "react";
+  useEffect(() => {
+    // Ketika halaman ini dimuat, tambahkan listener untuk event popstate
+    window.addEventListener("popstate", () => {
+      window.location.reload();
+    });
+
+    // Fungsi untuk membersihkan listener ketika component ini di-unmount
+    return () => {
+      window.removeEventListener("popstate", () => {
+        window.location.reload();
+      });
+    };
+  }, []);
+</script>

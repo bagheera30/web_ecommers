@@ -1,78 +1,104 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { axiosIntense } from "../../libs/axios";
+import axios from "axios";
 
-const FormAdd = () => {
+const ProductForm = () => {
   const [product, setProduct] = useState({
     name: "",
     deskripsi: "",
-    quantity: 0,
-    price: 0,
-    Image: "",
+    quantity: 0, // Initialize as integer
+    price: 0, // Initialize as integer
+    image: "",
   });
-  const handleChange = (event) => {
-    setProduct({ ...product, [event.target.name]: event.target.value });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "quantity" || name === "price") {
+      // Convert value to integer before updating state
+      const parsedValue = parseInt(value);
+      setProduct({
+        ...product,
+        [name]: isNaN(parsedValue) ? 0 : parsedValue, // Handle invalid input
+      });
+    } else {
+      setProduct({
+        ...product,
+        [name]: value,
+      });
+    }
   };
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axiosIntense.post("/products", product);
-      // Handle successful response, e.g., display a success message or redirect
-      console.log("Success!");
-      window.location.href = "/admin";
-    } catch (error) {
-      console.log(" ~ file: FormProduct.tsx:19 ~ handleSubmit ~ error:", error);
-      // Handle error, e.g., display an error message
-    } // Send updated product data
+      const response = await axios.post(
+        `http://localhost:3000/products`,
+        product
+      );
+
+      if (response.status === 200) {
+        alert("Data berhasil dikirim");
+        history.back();
+      } else {
+        console.error(`Error: ${response.status}`);
+        alert("Terjadi kesalahan saat mengirim data");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Terjadi kesalahan saat mengirim data");
+    }
   };
+
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Product Name:</label>
+      <label>
+        Nama:
         <input
           type="text"
-          id="name"
           name="name"
           value={product.name}
           onChange={handleChange}
         />
-        <label htmlFor="deskripsi">Product Description:</label>
-        <textarea
-          className="textarea"
-          id="deskripsi"
+      </label>
+      <label>
+        Deskripsi:
+        <input
+          type="text"
           name="deskripsi"
           value={product.deskripsi}
           onChange={handleChange}
         />
-
-        <label htmlFor="quantity">Quantity:</label>
+      </label>
+      <label>
+        Quantity:
         <input
           type="number"
-          id="quantity"
           name="quantity"
           value={product.quantity}
           onChange={handleChange}
         />
-        <label htmlFor="price">Price:</label>
+      </label>
+      <label>
+        Price:
         <input
           type="number"
-          id="price"
           name="price"
           value={product.price}
           onChange={handleChange}
         />
-        <label htmlFor="Image">Image:</label>
+      </label>
+      <label>
+        Image:
         <input
           type="text"
-          id="Image"
-          name="Image"
-          value={product.Image}
+          name="image"
+          value={product.image}
           onChange={handleChange}
         />
-      </div>
-      <button type="submit">Update Product</button>
+      </label>
+      <button type="submit">Kirim</button>
     </form>
   );
 };
 
-export default FormAdd;
+export default ProductForm;

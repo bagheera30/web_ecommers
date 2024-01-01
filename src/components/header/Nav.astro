@@ -37,8 +37,20 @@ import { Icon } from "astro-icon";
         <li>
           <a class="justify-between" href="/editProfile"> edit profile</a>
         </li>
+        <li>
+          <a class="justify-between" href="/Products/add">menjual barang</a>
+        </li>
         <li><a href="/">LogOut</a></li>
       </ul>
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document
+      .querySelector('a[href="/"]')
+      .addEventListener("click", function () {
+        localStorage.removeItem("token");
+      });
+  });
+</script>

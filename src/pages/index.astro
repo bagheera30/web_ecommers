@@ -4,6 +4,12 @@ import { Icon } from "astro-icon";
 import Foot from "../components/header/Foot.astro";
 import Layouts from "../layouts/Layouts.astro";
 const title = "Home";
+// const token = localStorage.getItem("token");
+// if (token) {
+//   window.location.href = "/dasbord";
+// } else {
+//   window.location.href = "/login";
+// }
 ---
 
 <Layouts title={title}>
@@ -19,8 +25,11 @@ const title = "Home";
       </div>
       <div class="flex md:gap-2 sm:gap-[2px] gap-0">
         <div class="flex justify-between">
-          <a href="/dasbord"
-            ><button class="btn rounded-3xl mx-2 md:w-32 sm:w-20 w-[68px]"
+          <a
+            href="/dasbord"
+            onclick="if (!localStorage.getItem('token')) { alert('Anda belum login!'); window.location.href = '/login'; return window.location.href = '/dasbord'; }"
+          >
+            <button class="btn rounded-3xl mx-2 md:w-32 sm:w-20 w-[68px]"
               >Dasbord</button
             ></a
           >

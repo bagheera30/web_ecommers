@@ -6,16 +6,16 @@ import { Image } from "astro:assets";
 import { getApiResponseById } from "../../libs/api-libs";
 import Foot from "../../components/header/Foot.astro";
 import Counter from "../../components/counter.tsx";
-const rupiah = (number) => {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-  }).format(number);
-};
+
 const { id } = Astro.params;
 
 const product = await getApiResponseById("products", id);
 const quantity = product.data.quantity;
+import { addToCart } from "../../store/cart";
+const addtocart = document.getElementById("addtocart");
+addtocart.addEventListener("click", () => {
+  addToCart(product);
+});
 ---
 
 <Layouts title={product.data.name}>
@@ -33,26 +33,22 @@ const quantity = product.data.quantity;
     </div>
     <div class="text-stone-800 font-['Roboto']">
       <h1 class="font-bold text-5xl my-24 ml-20">{product.data.name}</h1>
-      <h2 class="font-bold text-3xl my-14 ml-20">
-        {rupiah(product.data.price)}
-      </h2>
+      <h2 class="font-bold text-3xl my-14 ml-20">Rp. {product.data.price}</h2>
       <h2 class="font-bold text-3xl ml-20">Detail Produk</h2>
       <div class="w-[188px] h-[0px] border-2 border-red-700 ml-20"></div>
       <p class="w-[500px]
         h-[228px]
         text-[22px] ml-20 mt-10">
-        {product.data.deskripsi}
+        {product.data.deskripsi}onclick
       </p>
 
       <Counter quantity={quantity} client:load />
       <div class="w-[668px] h-[0px] border-2 border-red-700 mt-5 ml-20"></div>
       <div class="flex mt-16 ml-20">
-        <button class="btn bg-red-700"
-          ><a class="text-2xl font-bold text-white">
-            Masukan Keranjang
-          </a></button
+        <button class="btn bg-[#496b63]" id="addtocart">
+          Masukan Keranjang</button
         >
-        <button class="btn ml-24 w-72 bg-red-700">
+        <button class="btn ml-24 w-72 bg-[#496b63]">
           <a
             href="https://api.whatsapp.com/send/?phone=6289632126428&text&type=phone_number&app_absent=0"
             class="text-2xl font-bold text-white">Hubungi Penjual</a
@@ -65,4 +61,3 @@ const quantity = product.data.quantity;
     <Foot />
   </div>
 </Layouts>
- ../../components/counter.tsx

@@ -6,6 +6,7 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(cors())
+
 const port = process.env.PORT;
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello, untuk menggunakan api jika mencari produk maka harus /products");

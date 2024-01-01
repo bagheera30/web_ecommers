@@ -1,15 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const FormLogin = () => {
-  const [loginData, setLoginData] = useState({
+const FormRegister = () => {
+  const [regis, setRegis] = useState({
     username: "",
     password: "",
+    nomerWA: "0",
+    name: "",
   });
-  console.log("🚀 ~ file: FormLogin.tsx:9 ~ FormLogin ~ loginData:", loginData);
-
   const handleChange = (event) => {
-    setLoginData({ ...loginData, [event.target.name]: event.target.value });
+    setRegis({ ...regis, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async (event) => {
@@ -17,20 +17,14 @@ const FormLogin = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/users/login`,
-        loginData
+        `http://localhost:3000/users/register`,
+        regis
       );
 
       if (response.status === 200) {
-        // Save the token to localStorage
-        localStorage.setItem("token", response.data.user.token);
+        alert("login berhasil");
 
-        if (response.data.user.role === "Admin") {
-          alert("login berhasil");
-          window.location.href = "/admin";
-        } else {
-          window.location.href = "/dasbord";
-        }
+        window.location.href = "/login";
       } else {
         console.error(`Error: ${response.status}`);
         alert("Terjadi kesalahan saat mengirim data");
@@ -40,51 +34,70 @@ const FormLogin = () => {
       alert("Terjadi kesalahan saat mengirim data");
     }
   };
-
   return (
-    <>
-      <h1 className="text-black text-4xl font-bold">Masuk</h1>
+    <div className="w-96 p-6 bg-zinc-100 rounded-md shadow-lg">
+      <h1 className="text-black text-4xl font-bold">Register</h1>
       <form onSubmit={handleSubmit}>
+        <div className="py-3">
+          <input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            value={regis.name}
+            placeholder="Nama"
+            className="input input-bordered w-full max-w-xs"
+          />
+        </div>
+        <div className="py-3">
+          <input
+            type="text"
+            name="nomerWA"
+            onChange={handleChange}
+            value={regis.nomerWA}
+            placeholder="NO. Hanphone 08xxxxxxx"
+            className="input input-bordered w-full max-w-xs"
+          />
+        </div>
         <div className="py-3">
           <input
             type="text"
             name="username"
             onChange={handleChange}
-            value={loginData.username}
+            value={regis.username}
             placeholder="username"
             className="input input-bordered w-full max-w-xs"
           />
         </div>
         <div className="py-3">
           <input
-            type="password"
             name="password"
             onChange={handleChange}
-            value={loginData.password}
-            placeholder="password"
+            value={regis.password}
+            type="password"
+            placeholder="Password"
             className="input input-bordered w-full max-w-xs"
           />
         </div>
         <div className="text-center">
           <button type="submit" className="w-full btn btn-neutral bg-red-600">
-            login
+            register
           </button>
         </div>
       </form>
       <div className="w-96 h-5 justify-center items-center gap-9 inline-flex">
         <div className="w-20 h-px border border-black border-opacity-50"></div>
         <div className="text-black text-opacity-50 text-lg font-normal font-['Roboto']">
-          Belum punya akun?
+          sudah punya akun?
         </div>
         <div className="w-20 h-px border border-black border-opacity-50"></div>
       </div>
       <div className="text-center py-5">
-        <a href="/regiter">
-          <button className="w-full btn btn-neutral bg-red-600">regiter</button>
+        <a href="/login">
+          <button className="w-full btn btn-neutral bg-red-600">Login</button>
         </a>
       </div>
-    </>
+    </div>
   );
 };
 
-export default FormLogin;
+export default FormRegister;
