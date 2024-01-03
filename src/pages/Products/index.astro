@@ -1,57 +1,17 @@
 ---
-import ProductList from "../../components/ProductList/ProductList.astro";
+import Product from "../../components/ProductList/Product.tsx";
 import Layouts from "../../layouts/Layouts.astro";
 import { getApiResponse } from "../../libs/api-libs";
 import Foot from "../../components/header/Foot.astro";
-const product = await getApiResponse("products", "limit=10");
 
 import { Icon } from "astro-icon";
 ---
 
 <Layouts title="Produk">
-  <div class="h-auto">
-    <div class="navbar bg-[#496b63] bg-opacity-9">
-      <div class="flex-1">
-        <a
-          href="/"
-          class="btn btn-ghost normal-case md:text-3xl sm:text-xl text-lg text-white"
-          >MultiSellerSquare</a
-        >
-      </div>
-      <div class="flex md:gap-2 sm:gap-[2px] gap-0">
-        <div class="flex justify-between">
-          <a href="/dasbord"
-            ><button class="btn rounded-3xl mx-2 md:w-32 sm:w-20 w-[68px]"
-              >Dasbord</button
-            ></a
-          >
-          <a href="/Products"
-            ><button class="btn rounded-3xl mx-2 w-32 h-10">Products</button></a
-          >
-        </div>
-
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-24 rounded-full">
-              <Icon name="mdi:account-outline" class="text-gray-200" />
-            </div>
-          </label>
-          <ul
-            tabindex="0"
-            class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a class="justify-between" href="/login"> login</a>
-            </li>
-            <li><a href="/regiter">Register</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="">
-      <ProductList api={product} />
-    </div>
+  <div class="">
+    <Product client:idle />
   </div>
-  <Foot />
 </Layouts>
+<Foot />
+
+ ../../components/ProductList/ProductList.tsx

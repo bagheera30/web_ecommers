@@ -7,6 +7,14 @@ import Nav from "../../components/header/Nav.astro";
 
 <Layouts title="add Products">
   <Nav />
-  <FormAdd client:load />
+  <div class="h-screen">
+    <div
+      class="flex justify-center items-center max-h-screen bg-[#E5E5E5] pt-32 pb-32"
+    >
+      <div class="w-96 p-6 bg-zinc-100 rounded-md shadow-lg">
+        <FormAdd client:load />
+      </div>
+    </div>
+  </div>
 </Layouts>
 <Foot />

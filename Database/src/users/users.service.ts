@@ -32,7 +32,9 @@ const loginUser = async (username: string, password: string) => {
         throw new Error('Invalid password');
     }
 
-    const token = jwt.sign({ userId: user.userId, role: user.role }, '1213232313123123123123213'); // Include role in token payload
+    const token = jwt.sign({ userId: user.userId, role: user.role }, '{process.env.JWT_SECRET_KEY}');
+    // Include role in token payload
+
 
     try {
         await prisma.Users.update({
@@ -45,7 +47,7 @@ const loginUser = async (username: string, password: string) => {
         // Handle database error appropriately
     }
 
-    return { token, role: user.role }; // Return both token and role
+    return { token, role: user.role, username: user.username }; // Return both token and role
 };
 
 const editUsersByname = async (username: string, userData: any) => {

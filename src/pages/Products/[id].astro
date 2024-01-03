@@ -11,11 +11,6 @@ const { id } = Astro.params;
 
 const product = await getApiResponseById("products", id);
 const quantity = product.data.quantity;
-import { addToCart } from "../../store/cart";
-const addtocart = document.getElementById("addtocart");
-addtocart.addEventListener("click", () => {
-  addToCart(product);
-});
 ---
 
 <Layouts title={product.data.name}>
@@ -37,9 +32,9 @@ addtocart.addEventListener("click", () => {
       <h2 class="font-bold text-3xl ml-20">Detail Produk</h2>
       <div class="w-[188px] h-[0px] border-2 border-red-700 ml-20"></div>
       <p class="w-[500px]
-        h-[228px]
-        text-[22px] ml-20 mt-10">
-        {product.data.deskripsi}onclick
+          h-[228px]
+          text-[22px] ml-20 mt-10">
+        {product.data.deskripsi}
       </p>
 
       <Counter quantity={quantity} client:load />

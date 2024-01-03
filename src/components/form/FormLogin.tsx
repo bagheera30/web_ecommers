@@ -20,12 +20,12 @@ const FormLogin = () => {
         `http://localhost:3000/users/login`,
         loginData
       );
+      localStorage.setItem("username", response.data.username);
 
       if (response.status === 200) {
         // Save the token to localStorage
-        localStorage.setItem("token", response.data.user.token);
 
-        if (response.data.user.role === "Admin") {
+        if (response.data.role === "Admin") {
           alert("login berhasil");
           window.location.href = "/admin";
         } else {

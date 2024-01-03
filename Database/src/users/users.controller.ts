@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 const { createUser, loginUser, editUsersByname, getAllUsers, getuserByusername } = require('./users.service')
 const router = express.Router();
-
+const { Jwt } = require("jsonwebtoken");
 
 
 
@@ -42,12 +42,12 @@ router.post('/login', async (req: Request, res: Response) => {
     try {
         const { username, password } = req.body;
 
-        const { token, role } = await loginUser(username, password); // Retrieve token from loginUser function
-
+        const user = await loginUser(username, password); // Retrieve token from loginUser function
+        res.cookie('jwt', user.token, { httpOnly: true, secure: true });
         // Store token in session
 
 
-        res.status(200).json({ user: { role } });
+        res.status(200).json(user);
     } catch (error) {
         res.status(400).send((error as Error).message);
     }
@@ -73,5 +73,15 @@ router.put('/:username', async (req: Request, res: Response) => {
         message: "edit product success",
     });
 });
+router.patch('/:username', async (req: Request, res: Response) => {
+    const decode = Jwt.decode(req.cookies.jwt, process.env.JWT_SECRET_KEY)
+    const usernam = decode.username;
+    const userData = req.body;
+    const user = await editUsersByname(usernam, userData)
+    res.send({
+        data: user,
+        message: "edit product success",
+    })
+})
 module.exports = router
 

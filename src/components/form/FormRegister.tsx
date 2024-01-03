@@ -22,7 +22,7 @@ const FormRegister = () => {
       );
 
       if (response.status === 200) {
-        alert("login berhasil");
+        alert("register berhasil");
 
         window.location.href = "/login";
       } else {
