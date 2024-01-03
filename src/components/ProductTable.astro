@@ -1,10 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import Layouts from "../layouts/Layouts.astro";
-<<<<<<< HEAD
+
 import BtnDelete from "./btn/BtnDelete";
-=======
->>>>>>> 8603220851209c742d2d00daa77e64d743d106e7
+
 const { api } = Astro.props;
 const rupiah = (number) => {
   return new Intl.NumberFormat("id-ID", {
@@ -42,13 +41,10 @@ const rupiah = (number) => {
                 <a href={`/Products/update/${product.id}`}>
                   <button class="btn btn-primary">update</button>
                 </a>
-<<<<<<< HEAD
-                <BtnDelete client:idle id={product.id} />
-=======
+
                 <a href={`/Products/${product.id}`}>
                   <button class="btn btn-primary">delete</button>
                 </a>
->>>>>>> 8603220851209c742d2d00daa77e64d743d106e7
               </div>
             </div>
           </div>
@@ -57,22 +53,3 @@ const rupiah = (number) => {
     }
   </div>
 </Layouts>
-<<<<<<< HEAD
-<script>
-  import { useEffect } from "react";
-  useEffect(() => {
-    // Ketika halaman ini dimuat, tambahkan listener untuk event popstate
-    window.addEventListener("popstate", () => {
-      window.location.reload();
-    });
-
-    // Fungsi untuk membersihkan listener ketika component ini di-unmount
-    return () => {
-      window.removeEventListener("popstate", () => {
-        window.location.reload();
-      });
-    };
-  }, []);
-</script>
-=======
->>>>>>> 8603220851209c742d2d00daa77e64d743d106e7

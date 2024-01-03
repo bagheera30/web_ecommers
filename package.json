@@ -27,10 +27,9 @@
     "nanostores": "^0.9.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
+
     "react-icons": "^4.12.0",
-=======
->>>>>>> 8603220851209c742d2d00daa77e64d743d106e7
+
     "react-router-dom": "^6.21.1",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.3.2"
