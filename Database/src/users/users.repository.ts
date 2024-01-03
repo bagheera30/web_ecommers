@@ -8,11 +8,19 @@ const fiindAllUsers = async () => {
     const users = await prisma.Users.findMany();
     return users;
 }
+<<<<<<< HEAD
 const findUsersByUsername = async (usernameS: string) => {
     const user = await prisma.Users.findUnique({
         where: {
             username: usernameS,
         }
+=======
+const findUsersByUsername = async (username: string) => {
+    const user = await prisma.Users.findUnique({
+        where: {
+            username: username,
+        },
+>>>>>>> 8603220851209c742d2d00daa77e64d743d106e7
     });
     return user;
 }

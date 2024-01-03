@@ -1,6 +1,40 @@
 ---
+<<<<<<< HEAD
 import Cart from "../components/Test1.tsx";
 const product = { id: "1", name: "Product 1", price: 100 };
 ---
 
 <Cart client:load />
+=======
+let counter = 0;
+
+if (Astro.cookies.has("counter")) {
+  const cookie = Astro.cookies.get("counter");
+  counter = cookie.number(); // Retrieve the current counter value
+}
+
+// Retrieve potential increment/decrement values from query parameters
+const url = new URL(Astro.request.url);
+const increment = url.searchParams.get("increment");
+const decrement = url.searchParams.get("decrement");
+
+if (increment) {
+  counter += parseInt(increment); // Add the increment value
+} else if (decrement) {
+  counter -= parseInt(decrement); // Subtract the decrement value
+} else {
+  counter++; // Default to incrementing if no query parameters are present
+}
+
+Astro.cookies.set("counter", counter);
+---
+
+<html>
+  <h1>Counter = {counter}</h1>
+
+  <a href="?increment=1">Increment</a>
+  <a href="?decrement=1">Decrement</a>
+
+
+</html>
+>>>>>>> 8603220851209c742d2d00daa77e64d743d106e7

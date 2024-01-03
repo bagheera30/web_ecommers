@@ -3,8 +3,11 @@ const { createUser, loginUser, editUsersByname, getAllUsers, getuserByusername }
 const router = express.Router();
 const { Jwt } = require("jsonwebtoken");
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8603220851209c742d2d00daa77e64d743d106e7
 router.get("/", async (req, res) => {
     try {
         const users = await getAllUsers();
@@ -29,9 +32,14 @@ router.post('/register', async (req: Request, res: Response) => {
     try {
         const newdata = req.body;
         const user = await createUser(newdata);
+<<<<<<< HEAD
         const userString = JSON.parse(JSON.stringify(user));
         res.send({
             data: userString,
+=======
+        res.send({
+            data: user,
+>>>>>>> 8603220851209c742d2d00daa77e64d743d106e7
             message: "register success",
         });
     } catch (error) {
@@ -41,6 +49,7 @@ router.post('/register', async (req: Request, res: Response) => {
 router.post('/login', async (req: Request, res: Response) => {
     try {
         const { username, password } = req.body;
+<<<<<<< HEAD
 
         const user = await loginUser(username, password); // Retrieve token from loginUser function
         res.cookie('jwt', user.token, { httpOnly: true, secure: true });
@@ -48,6 +57,10 @@ router.post('/login', async (req: Request, res: Response) => {
 
 
         res.status(200).json(user);
+=======
+        const user = await loginUser(username, password);
+        res.status(200).json({ user });
+>>>>>>> 8603220851209c742d2d00daa77e64d743d106e7
     } catch (error) {
         res.status(400).send((error as Error).message);
     }
@@ -73,6 +86,7 @@ router.put('/:username', async (req: Request, res: Response) => {
         message: "edit product success",
     });
 });
+<<<<<<< HEAD
 router.patch('/:username', async (req: Request, res: Response) => {
     const decode = Jwt.decode(req.cookies.jwt, process.env.JWT_SECRET_KEY)
     const usernam = decode.username;
@@ -83,5 +97,7 @@ router.patch('/:username', async (req: Request, res: Response) => {
         message: "edit product success",
     })
 })
+=======
+>>>>>>> 8603220851209c742d2d00daa77e64d743d106e7
 module.exports = router
 
