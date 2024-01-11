@@ -89,7 +89,7 @@ const SearchFilter = () => {
           <div className="carousel w-full h-96 bg-[#E5E5E5]">
             <div id="slide1" className="carousel-item relative w-full">
               <img
-                src="src/img/Untitled design (2).jpg"
+                src="https://assets.klikindomaret.com/products/promopage/New-Big%20Banner%20Wardah.jpg "
                 className="w-full h-96"
               />
               <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -103,7 +103,7 @@ const SearchFilter = () => {
             </div>
             <div id="slide4" className="carousel-item relative w-full">
               <img
-                src="src/img/Untitled design (2).jpg"
+                src="https://www.vcaretrichology.com/landing/skin-whitening-treatment/img/skin_whitening_banner-01.webp "
                 className="w-full h-96"
               />
               <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
